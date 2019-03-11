@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 //css
-import "./index.css";
+import "./index.scss";
 
 // Root React Component
 import App from "./App";

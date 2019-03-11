@@ -1,0 +1,38 @@
+@import "Colors";
+@import "./Pages/index";
+@import "./Components/index";
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Titillium Web", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  a:hover {
+    text-decoration: none;
+    color: black;
+  }
+  p {
+    margin: 0;
+  }
+  hr {
+    margin-top: 5px;
+  }
+  strong {
+    color: $dark-gray;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background-color: ghostwhite;
+}
