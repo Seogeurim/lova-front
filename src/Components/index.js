@@ -4,5 +4,6 @@
  */
 
 import DefaultComponent from "./_DefaultComponent/DefaultComponent";
+import NavBar from "./NavBar/NavBar";
 
-export { DefaultComponent };
+export { DefaultComponent, NavBar };

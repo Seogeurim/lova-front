@@ -2,6 +2,7 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from "react";
+import { NavBar } from "../../Components";
 
 const defaultProps = {};
 const propTypes = {};
@@ -13,7 +14,11 @@ class MainPage extends Component {
   }
 
   render() {
-    return <div>This is Main Page</div>;
+    return (
+      <div>
+        <NavBar />
+      </div>
+    );
   }
 }
 
