@@ -42,13 +42,10 @@ class NavBar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/link1/">Link1</NavLink>
+              <NavLink href="/text/">ByText</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/link2/">Link2</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/link3/">Link3</NavLink>
+              <NavLink href="/voice/">ByVoice</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
