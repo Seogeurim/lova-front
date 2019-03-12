@@ -16,7 +16,7 @@ class MainPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar isActive="fulltext" />
       </div>
     );
   }
