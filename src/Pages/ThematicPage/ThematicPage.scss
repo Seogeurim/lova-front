@@ -1,31 +1,36 @@
 /*
   Thematic Page Styling
 */
-.InputBox {
+.inputArea {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   display: flex;
   justify-content: center;
-}
-.textInput {
-  margin-top: 3rem;
-  padding: 20px;
-  width: 900px;
-  height: 500px;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 25px;
+  //border: 2px solid red;
 
-  &__head {
-    &__input {
-      //border: none;
-      &:focus {
-        outline: none;
+  &__container {
+    padding: 30px;
+    width: 80%;
+    background-color: white;
+    box-shadow: 1px 8px 7px rgba(0, 0, 0, 0.3);
+
+    &__head {
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+
+      & span {
+        font-weight: bold;
       }
     }
-  }
-
-  &__body {
-    border: none;
     &__input {
+      width: 100%;
+      font-size: 1.2rem;
+      border: none;
+      border-bottom: 1px solid $dark-gray;
       &:focus {
         outline: none;
       }

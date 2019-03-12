@@ -11,24 +11,54 @@ const propTypes = {};
 class ThematicPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { claim: "", premise: "" };
   }
 
   render() {
     return (
       <div>
         <NavBar isActive="thematic" />
-        <div className="InputBox">
-          <div className="textInput">
-            <div className="textInput__head">
-              <p>Write your Full Essay.</p>
-              <Textarea className="textInput__head__input" maxRows={4} />
+        <div className="inputArea">
+          <div className="inputArea__container">
+            <div className="inputArea__container__head">
+              <p className="inputArea__container__title">
+                Write the <span>Main Claim Sentence</span> of your essay.
+              </p>
+              <Textarea
+                className="inputArea__container__input"
+                maxRows={4}
+                onChange={e => this.handleClaim(e)}
+              />
+            </div>
+            <div className="inputArea__container__body">
+              <p className="inputArea__container__title">
+                Write the <span>Premises</span> of your essay.
+              </p>
+              <Textarea
+                className="inputArea__container__input"
+                minRows={10}
+                maxRows={20}
+                onChange={e => this.handlePremise(e)}
+              />
+            </div>
+            <div className="inputArea__container__footer">
+              <button onClick={this.handleSubmit}>Submit</button>
             </div>
           </div>
         </div>
       </div>
     );
   }
+
+  handleClaim = e => {
+    this.setState({ claim: e.target.value });
+  };
+
+  handlePremise = e => {
+    this.setState({ premise: e.target.value });
+  };
+
+  handleSubmit = e => {};
 }
 
 ThematicPage.defaultProps = defaultProps;
