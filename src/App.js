@@ -4,13 +4,7 @@ import React, { Component } from "react";
 //React Router
 import { Route } from "react-router-dom";
 
-import {
-  DefaultPage,
-  MainPage,
-  FullTextPage,
-  ThematicPage,
-  VideoPage
-} from "./Pages";
+import { MainPage, FullTextPage, ThematicPage, VideoPage } from "./Pages";
 
 class App extends Component {
   constructor(props) {
