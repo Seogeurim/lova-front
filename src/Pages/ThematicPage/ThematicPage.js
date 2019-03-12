@@ -8,7 +8,7 @@ import Textarea from "react-textarea-autosize";
 const defaultProps = {};
 const propTypes = {};
 
-class ByTextPage extends Component {
+class ThematicPage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -17,7 +17,7 @@ class ByTextPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar isActive="thematic" />
         <div className="InputBox">
           <div className="textInput">
             <div className="textInput__head">
@@ -31,7 +31,7 @@ class ByTextPage extends Component {
   }
 }
 
-ByTextPage.defaultProps = defaultProps;
-ByTextPage.propTypes = propTypes;
+ThematicPage.defaultProps = defaultProps;
+ThematicPage.propTypes = propTypes;
 
-export default ByTextPage;
+export default ThematicPage;
