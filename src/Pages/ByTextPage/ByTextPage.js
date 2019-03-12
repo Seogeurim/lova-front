@@ -3,6 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
+import Textarea from "react-textarea-autosize";
 
 const defaultProps = {};
 const propTypes = {};
@@ -17,7 +18,14 @@ class ByTextPage extends Component {
     return (
       <div>
         <NavBar />
-        This is ByText Page
+        <div className="InputBox">
+          <div className="textInput">
+            <div className="textInput__head">
+              <p>Write your Full Essay.</p>
+              <Textarea className="textInput__head__input" maxRows={4} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
