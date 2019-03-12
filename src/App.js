@@ -4,7 +4,13 @@ import React, { Component } from "react";
 //React Router
 import { Route } from "react-router-dom";
 
-import { DefaultPage, MainPage, ByTextPage } from "./Pages";
+import {
+  DefaultPage,
+  MainPage,
+  FullTextPage,
+  ThematicPage,
+  VideoPage
+} from "./Pages";
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +22,9 @@ class App extends Component {
     return (
       <div className="app">
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/text" component={ByTextPage} />
+        <Route exact path="/fulltext" component={FullTextPage} />
+        <Route exact path="/thematic" component={ThematicPage} />
+        <Route exact path="/video" component={VideoPage} />
       </div>
     );
   }

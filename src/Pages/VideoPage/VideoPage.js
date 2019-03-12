@@ -7,7 +7,7 @@ import { NavBar } from "../../Components";
 const defaultProps = {};
 const propTypes = {};
 
-class MainPage extends Component {
+class VideoPage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,13 +16,14 @@ class MainPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar isActive="video" />
+        This is Video Page
       </div>
     );
   }
 }
 
-MainPage.defaultProps = defaultProps;
-MainPage.propTypes = propTypes;
+VideoPage.defaultProps = defaultProps;
+VideoPage.propTypes = propTypes;
 
-export default MainPage;
+export default VideoPage;

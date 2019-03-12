@@ -7,7 +7,7 @@ import { NavBar } from "../../Components";
 const defaultProps = {};
 const propTypes = {};
 
-class MainPage extends Component {
+class FullTextPage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,13 +16,14 @@ class MainPage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar isActive="fulltext" />
+        This is FullText Page
       </div>
     );
   }
 }
 
-MainPage.defaultProps = defaultProps;
-MainPage.propTypes = propTypes;
+FullTextPage.defaultProps = defaultProps;
+FullTextPage.propTypes = propTypes;
 
-export default MainPage;
+export default FullTextPage;
