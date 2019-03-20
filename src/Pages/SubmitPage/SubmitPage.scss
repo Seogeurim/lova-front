@@ -1,3 +1,28 @@
 /*
   Submit Page Styling
 */
+
+.submitPage {
+  &__output {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3%;
+
+    &__textArea {
+      border: 2px solid black;
+      padding: 20px;
+      margin-right: 3%;
+      width: 40%;
+      height: 500px;
+      overflow: scroll;
+    }
+
+    &__resultArea {
+      border: 2px solid black;
+      margin-left: 3%;
+      width: 40%;
+      height: 500px;
+    }
+  }
+}

@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
 import Textarea from "react-textarea-autosize";
+import { SubmitPage } from "..";
 
 const defaultProps = {};
 const propTypes = {};
@@ -11,41 +12,47 @@ const propTypes = {};
 class ThematicPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { claim: "", premise: "" };
+    this.state = { claim: "", premise: "", isSubmit: false };
   }
 
   render() {
+    console.log(this.state.isSubmit);
+    const { isSubmit } = this.state;
     return (
       <div>
         <NavBar isActive="thematic" />
-        <div className="inputArea">
-          <div className="inputArea__container">
-            <div className="inputArea__container__head">
-              <p className="inputArea__container__title">
-                Write the <span>Main Claim Sentence</span> of your essay.
-              </p>
-              <Textarea
-                className="inputArea__container__input"
-                maxRows={4}
-                onChange={e => this.handleClaim(e)}
-              />
-            </div>
-            <div className="inputArea__container__body">
-              <p className="inputArea__container__title">
-                Write the <span>Premises</span> of your essay.
-              </p>
-              <Textarea
-                className="inputArea__container__input"
-                minRows={10}
-                maxRows={20}
-                onChange={e => this.handlePremise(e)}
-              />
-            </div>
-            <div className="inputArea__container__footer">
-              <button onClick={this.handleSubmit}>Submit</button>
+        {isSubmit ? (
+          <SubmitPage inputText={this.state.premise} />
+        ) : (
+          <div className="inputArea">
+            <div className="inputArea__container">
+              <div className="inputArea__container__head">
+                <p className="inputArea__container__title">
+                  Write the <span>Main Claim Sentence</span> of your essay.
+                </p>
+                <Textarea
+                  className="inputArea__container__input"
+                  maxRows={4}
+                  onChange={e => this.handleClaim(e)}
+                />
+              </div>
+              <div className="inputArea__container__body">
+                <p className="inputArea__container__title">
+                  Write the <span>Premises</span> of your essay.
+                </p>
+                <Textarea
+                  className="inputArea__container__input"
+                  minRows={10}
+                  maxRows={20}
+                  onChange={e => this.handlePremise(e)}
+                />
+              </div>
+              <div className="inputArea__container__footer">
+                <button onClick={this.handleSubmit}>Submit</button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
@@ -58,7 +65,9 @@ class ThematicPage extends Component {
     this.setState({ premise: e.target.value });
   };
 
-  handleSubmit = e => {};
+  handleSubmit = e => {
+    this.setState({ isSubmit: true });
+  };
 }
 
 ThematicPage.defaultProps = defaultProps;

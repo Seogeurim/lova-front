@@ -2,7 +2,6 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from "react";
-import { NavBar } from "../../Components";
 
 const defaultProps = {};
 const propTypes = {};
@@ -14,10 +13,15 @@ class SubmitPage extends Component {
   }
 
   render() {
+    const { inputText } = this.props;
     return (
-      <div>
-        <NavBar />
-        This is Submit Page
+      <div className="submitPage">
+        <div className="submitPage__output">
+          <div className="submitPage__output__textArea">{inputText}</div>
+          <div className="submitPage__output__resultArea">
+            This is Output box
+          </div>
+        </div>
       </div>
     );
   }
