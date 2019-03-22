@@ -12,17 +12,21 @@ const propTypes = {};
 class ThematicPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { claim: "", premise: "", isSubmit: false };
+    this.state = {
+      claim: "",
+      premise: "",
+      isSubmit: true
+    };
   }
 
   render() {
     console.log(this.state.isSubmit);
-    const { isSubmit } = this.state;
+    const { isSubmit, premise } = this.state;
     return (
       <div>
         <NavBar isActive="thematic" />
         {isSubmit ? (
-          <SubmitPage inputText={this.state.premise} />
+          <SubmitPage inputText={premise} />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
