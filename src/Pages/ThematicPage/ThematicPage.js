@@ -3,8 +3,9 @@
 
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
-import Textarea from "react-textarea-autosize";
 import { SubmitPage } from "..";
+import Textarea from "react-textarea-autosize";
+import { split } from "sentence-splitter";
 
 const defaultProps = {};
 const propTypes = {};
@@ -15,18 +16,19 @@ class ThematicPage extends Component {
     this.state = {
       claim: "",
       premise: "",
-      isSubmit: true
+      isSubmit: false,
+      outputText: []
     };
   }
 
   render() {
     console.log(this.state.isSubmit);
-    const { isSubmit, premise } = this.state;
+    const { isSubmit, outputText } = this.state;
     return (
       <div>
         <NavBar isActive="thematic" />
         {isSubmit ? (
-          <SubmitPage inputText={premise} />
+          <SubmitPage inputText={outputText} />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
@@ -70,6 +72,7 @@ class ThematicPage extends Component {
   };
 
   handleSubmit = e => {
+    this.setState({ outputText: split(this.state.premise) });
     this.setState({ isSubmit: true });
   };
 }
