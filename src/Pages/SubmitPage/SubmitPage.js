@@ -17,37 +17,40 @@ class SubmitPage extends Component {
 
   render() {
     console.log(this.state.selectedToken);
-    const { inputText, claimText } = this.props;
+    const { inputType, inputText, claimText } = this.props;
     const { selectedToken } = this.state;
     return (
       <div className="submitPage">
         <div className="submitPage__output">
           <div className="submitPage__output__textArea">
-            <p>
-              {claimText.map(data => {
-                return (
-                  <span
-                    key={"claim-" + data.range[0]}
-                    className={cx("submitPage__output__textArea__token", {
-                      "submitPage__output__textArea__token-active":
-                        selectedToken === "claim-" + data.range[0]
-                    })}
-                    onClick={() => this.handleClick("claim-" + data.range[0])}
-                  >
-                    {data.type === "WhiteSpace" ? (
-                      data.raw.indexOf("\n") !== -1 ? (
-                        <br />
+            {inputType === "thematic" ? (
+              <p>
+                {claimText.map(data => {
+                  return (
+                    <span
+                      key={"claim-" + data.range[0]}
+                      className={cx("submitPage__output__textArea__token", {
+                        "submitPage__output__textArea__token-active":
+                          selectedToken === "claim-" + data.range[0]
+                      })}
+                      onClick={() => this.handleClick("claim-" + data.range[0])}
+                    >
+                      {data.type === "WhiteSpace" ? (
+                        data.raw.indexOf("\n") !== -1 ? (
+                          <br />
+                        ) : (
+                          " "
+                        )
                       ) : (
-                        " "
-                      )
-                    ) : (
-                      data.raw
-                    )}
-                  </span>
-                );
-              })}
-            </p>
-            <br />
+                        data.raw
+                      )}
+                    </span>
+                  );
+                })}
+                <br />
+                <br />
+              </p>
+            ) : null}
             {inputText.map(data => {
               return (
                 <span

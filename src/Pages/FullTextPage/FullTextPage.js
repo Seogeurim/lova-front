@@ -3,8 +3,9 @@
 
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
-import Textarea from "react-textarea-autosize";
 import { SubmitPage } from "..";
+import Textarea from "react-textarea-autosize";
+import { split } from "sentence-splitter";
 
 const defaultProps = {};
 const propTypes = {};
@@ -12,16 +13,16 @@ const propTypes = {};
 class FullTextPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { paragraph: "", isSubmit: false };
+    this.state = { paragraph: "", isSubmit: false, outputText: [] };
   }
 
   render() {
-    const { paragraph, isSubmit } = this.state;
+    const { isSubmit, outputText } = this.state;
     return (
       <div>
         <NavBar isActive="fulltext" />
         {isSubmit ? (
-          <SubmitPage inputText={paragraph} />
+          <SubmitPage inputText={outputText} />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
@@ -46,6 +47,8 @@ class FullTextPage extends Component {
   };
 
   handleSubmit = e => {
+    const { paragraph } = this.state;
+    this.setState({ outputText: split(paragraph) });
     this.setState({ isSubmit: true });
   };
 }

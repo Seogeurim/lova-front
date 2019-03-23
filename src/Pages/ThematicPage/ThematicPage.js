@@ -29,7 +29,11 @@ class ThematicPage extends Component {
       <div>
         <NavBar isActive="thematic" />
         {isSubmit ? (
-          <SubmitPage inputText={outputPremise} claimText={outputClaim} />
+          <SubmitPage
+            inputType="thematic"
+            inputText={outputPremise}
+            claimText={outputClaim}
+          />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
