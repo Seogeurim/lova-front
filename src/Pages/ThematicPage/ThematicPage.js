@@ -17,19 +17,19 @@ class ThematicPage extends Component {
       claim: "",
       premise: "",
       isSubmit: false,
-      outputText: [],
+      outputPremise: [],
       outputClaim: []
     };
   }
 
   render() {
     console.log(this.state.isSubmit);
-    const { isSubmit, outputText, outputClaim } = this.state;
+    const { isSubmit, outputPremise, outputClaim } = this.state;
     return (
       <div>
         <NavBar isActive="thematic" />
         {isSubmit ? (
-          <SubmitPage inputText={outputText} claimText={outputClaim} />
+          <SubmitPage inputText={outputPremise} claimText={outputClaim} />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
@@ -75,7 +75,7 @@ class ThematicPage extends Component {
   handleSubmit = e => {
     const { claim, premise } = this.state;
     this.setState({ outputClaim: split(claim) });
-    this.setState({ outputText: split(premise) });
+    this.setState({ outputPremise: split(premise) });
     this.setState({ isSubmit: true });
   };
 }
