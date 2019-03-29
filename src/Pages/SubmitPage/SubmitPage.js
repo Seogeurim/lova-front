@@ -3,21 +3,35 @@
 
 import React, { Component } from "react";
 import cx from "classnames";
+import * as Action from "../../ActionCreators/Action";
+import { connect } from "react-redux";
 
 const defaultProps = {};
 const propTypes = {};
+
+const mapStateToProps = state => {
+  return {
+    actionResult: state.reducer.actionResult
+  };
+};
 
 class SubmitPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedToken: ""
+      selectedToken: "",
+      token: "",
+      score: ""
     };
+  }
+
+  componentWillMount() {
+    this.handleGetEssayScore();
   }
 
   render() {
     console.log(this.state.selectedToken);
-    const { inputType, inputText, claimText } = this.props;
+    const { inputType, inputText, claimText, essay_id } = this.props;
     const { selectedToken } = this.state;
     return (
       <div className="submitPage">
@@ -75,7 +89,7 @@ class SubmitPage extends Component {
             })}
           </div>
           <div className="submitPage__output__resultArea">
-            This is Output box
+            {this.state.score}
           </div>
         </div>
       </div>
@@ -85,9 +99,19 @@ class SubmitPage extends Component {
   handleClick = param => {
     this.setState({ selectedToken: param });
   };
+
+  handleGetEssayScore = () => {
+    const { dispatch, essay_id } = this.props;
+    const params = { id: essay_id };
+    dispatch(Action.getEssayScore(params)).then(score => {
+      console.log("score");
+      console.log(score);
+      this.setState({ score: score });
+    });
+  };
 }
 
 SubmitPage.defaultProps = defaultProps;
 SubmitPage.propTypes = propTypes;
 
-export default SubmitPage;
+export default connect(mapStateToProps)(SubmitPage);
