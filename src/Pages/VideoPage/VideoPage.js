@@ -11,7 +11,7 @@ const propTypes = {};
 class VideoPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { link: "", isClicked: false, youtubeId: "" };
+    this.state = { youtubeUrl: "", youtubeId: "", isClicked: false };
   }
 
   render() {
@@ -23,10 +23,11 @@ class VideoPage extends Component {
         autoplay: 1
       }
     };
+
     return (
       <div>
         <NavBar isActive="video" />
-        <input type="text" onChange={e => this.handleLink(e)} />
+        <input type="text" onChange={e => this.handleURL(e)} />
         <input type="button" value="Click" onClick={this.handleClick} />
         {this.state.isClicked ? (
           <YouTube
@@ -39,18 +40,16 @@ class VideoPage extends Component {
     );
   }
 
-  handleLink = e => {
-    this.setState({ link: e.target.value, isClicked: false });
-    console.log(this.state.link);
+  handleURL = e => {
+    this.setState({ youtubeUrl: e.target.value, isClicked: false });
   };
 
   handleClick = () => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    const matchs = this.state.link.match(regExp);
+    const matchs = this.state.youtubeUrl.match(regExp);
     if (matchs) {
       this.setState({ youtubeId: matchs[7] });
     }
-    console.log(this.state.youtubeId);
     this.setState({ isClicked: true });
   };
 
