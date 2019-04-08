@@ -4,6 +4,13 @@
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
 import YouTube from "react-youtube";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
+import Button from "@material-ui/core/Button";
 
 const defaultProps = {};
 const propTypes = {};
@@ -11,37 +18,78 @@ const propTypes = {};
 class VideoPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { youtubeUrl: "", youtubeId: "", isClicked: false };
+    this.state = {
+      youtubeUrl: "",
+      youtubeId: "",
+      isValid: true,
+      isClicked: false
+    };
   }
 
   render() {
     const opts = {
-      height: "390",
-      width: "640",
+      height: "350",
+      width: "575",
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 1
       }
     };
-
+    const { youtubeId, isValid, isClicked } = this.state;
     return (
-      <div>
+      <div className="videoPage">
         <NavBar isActive="video" />
-        <input type="text" onChange={e => this.handleURL(e)} />
-        <input type="button" value="Click" onClick={this.handleClick} />
-        {this.state.isClicked ? (
-          <YouTube
-            videoId={this.state.youtubeId}
-            opts={opts}
-            onReady={this._onReady}
-          />
-        ) : null}
+        <div className="videoPage__youtube">
+          <FormControl className="videoPage__youtube__input">
+            <InputLabel>YouTube Link here.</InputLabel>
+            <Input
+              onChange={e => this.handleURL(e)}
+              error={!isValid}
+              onKeyPress={this.handleEnter}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    className="videoPage__youtube__input__enterBtn"
+                    aria-label="Keyboard Return"
+                    disabled={!isValid}
+                    onClick={this.handleClick}
+                  >
+                    <KeyboardReturn />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          {isClicked ? (
+            <YouTube
+              className="videoPage__youtube__show"
+              videoId={youtubeId}
+              opts={opts}
+              onReady={this._onReady}
+            />
+          ) : null}
+
+          {isClicked ? (
+            <Button className="videoPage__youtube__button" variant="outlined">
+              Submit
+            </Button>
+          ) : null}
+        </div>
       </div>
     );
   }
 
   handleURL = e => {
     this.setState({ youtubeUrl: e.target.value, isClicked: false });
+    const re = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/gm;
+    this.setState({ isValid: re.test(e.target.value) });
+  };
+
+  handleEnter = e => {
+    if (e.key === "Enter" && this.state.isValid === true) {
+      this.handleClick();
+    }
   };
 
   handleClick = () => {
