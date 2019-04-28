@@ -7,6 +7,8 @@ import { SubmitPage } from "..";
 import * as Action from "../../ActionCreators/Action";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { split } from "sentence-splitter";
 
 const defaultProps = {};
@@ -24,10 +26,14 @@ class FullTextPage extends Component {
     this.state = { paragraph: "", isSubmit: false, outputText: [], token: "" };
   }
 
+  componentWillMount() {
+    this.setState({ isSubmit: false });
+  }
+
   render() {
     const { paragraph, isSubmit, outputText, token } = this.state;
     return (
-      <div>
+      <div className="fullTextPage">
         <NavBar isActive="fulltext" />
         {isSubmit ? (
           <SubmitPage
@@ -36,17 +42,23 @@ class FullTextPage extends Component {
             essay_id={token}
           />
         ) : (
-          <div className="inputArea">
-            <div className="inputArea__container">
-              <p className="inputArea__container__title">Write your essay.</p>
-              <Textarea
-                className="inputArea__container__input"
-                minRows={15}
-                maxRows={30}
+          <div className="fullTextPage__inputArea">
+            <div className="fullTextPage__inputArea__container">
+              <TextField
+                className="fullTextPage__inputArea__container__input"
+                label="Write your essay."
+                rowsMax="25"
+                multiline
                 onChange={e => this.handleParagraph(e)}
               />
-              <div className="inputArea__container__footer">
-                <button onClick={this.handleSubmit}>Submit</button>
+              <div className="fullTextPage__inputArea__container__submit">
+                <Button
+                  className="fullTextPage__inputArea__container__submit-btn"
+                  variant="outlined"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
@@ -62,13 +74,17 @@ class FullTextPage extends Component {
     const { dispatch } = this.props;
     const { paragraph } = this.state;
     const params = { essay: paragraph };
-    this.setState({ outputText: split(paragraph) });
-    // dispatch(Action.postEssay(params)).then(value => {
-    //   console.log(value);
-    //   this.setState({ token: value });
-    //   this.setState({ isSubmit: true });
-    // });
-    this.setState({ isSubmit: true });
+    if (this.state.paragraph === "") {
+      alert("You must enter at least one character.");
+    } else {
+      this.setState({ outputText: split(paragraph) });
+      // dispatch(Action.postEssay(params)).then(value => {
+      //   console.log(value);
+      //   this.setState({ token: value });
+      //   this.setState({ isSubmit: true });
+      // });
+      this.setState({ isSubmit: true });
+    }
   };
 }
 
