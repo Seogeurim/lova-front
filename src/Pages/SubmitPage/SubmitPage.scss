@@ -3,38 +3,25 @@
 */
 
 .submitPage {
-  &__output {
+  &__container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 3%;
 
-    &__textArea {
-      border: 2px solid black;
+    &__essayArea {
       padding: 20px;
       margin-right: 3%;
       width: 40%;
-      height: 500px;
+      height: 550px;
       overflow: scroll;
-
-      &__token {
-        &-active {
-          font-weight: bold;
-        }
-      }
-
-      &__token:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
     }
 
     &__resultArea {
-      border: 2px solid black;
       padding: 20px;
       margin-left: 3%;
       width: 40%;
-      height: 500px;
+      height: 550px;
       overflow: scroll;
     }
   }

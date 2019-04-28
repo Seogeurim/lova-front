@@ -1,0 +1,17 @@
+/*
+  SubmitEssay Component Styling
+*/
+.submitEssay {
+  text-align: justify;
+
+  &__token {
+    &-active {
+      font-weight: bold;
+    }
+  }
+
+  &__token:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

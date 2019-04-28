@@ -30,11 +30,7 @@ class FullTextPage extends Component {
       <div>
         <NavBar isActive="fulltext" />
         {isSubmit ? (
-          <SubmitPage
-            inputText={outputText}
-            essay={paragraph}
-            essay_id={token}
-          />
+          <SubmitPage inputText={outputText} essay_id={token} />
         ) : (
           <div className="inputArea">
             <div className="inputArea__container">
