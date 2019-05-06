@@ -24,8 +24,33 @@
       height: 550px;
       overflow: scroll;
 
-      &__scoreChart {
-        width: 40%;
+      &__logicScore {
+        display: flex;
+
+        &__scoreChart {
+          width: 30%;
+        }
+
+        &__scoreText {
+          width: 70%;
+          padding-left: 3%;
+          font-size: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          &-title {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      &__factCheck {
+        margin-top: 30px;
+
+        &-title {
+          font-size: 1.2rem;
+        }
       }
     }
   }
