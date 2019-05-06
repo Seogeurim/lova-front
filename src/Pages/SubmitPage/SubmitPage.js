@@ -23,6 +23,13 @@ class SubmitPage extends Component {
       results: [
         'In 2000, George Bierson’s "Marijuana, the Deceptive Drug", was published by the Massachusetts News.',
         "Bierson concludes that marijuana is harmful in many ways, including brain damage, damage to the reproductive system, and weakening of the immune system."
+      ],
+      url: [
+        "https://www.archives.gov/publications/prologue/1996/fall/butow.html",
+        "https://www.dailymail.co.uk/news/article-2237316/I-saw-John-Doe-Duffle-Bags-Flower-shop-seller-came-face-face-serial-killer-charged-murders.html",
+        "http://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/197/2016/02/20082314/Quotations-The-Writing-Center.pdf",
+        "https://history.army.mil/html/books/030/30-15-1/CMH_Pub_30-15-1.pdf",
+        "https://mafiadoc.com/fast-food-nation_5987e64d1723ddd069fb036d.html"
       ]
     };
   }
@@ -34,7 +41,7 @@ class SubmitPage extends Component {
 
   render() {
     const { pageType, inputText, claimText } = this.props;
-    const { score, results } = this.state;
+    const { score, results, url } = this.state;
     return (
       <div className="submitPage">
         <div className="submitPage__container">
@@ -80,8 +87,18 @@ class SubmitPage extends Component {
                   <p
                     key={data}
                     className="submitPage__container__resultArea__factCheck__sentence"
+                    onClick={() => this.handleGetReference(data)}
                   >
                     {data}
+                    <ul>
+                      {url.map(data => {
+                        return (
+                          <li key={data}>
+                            <a href={data}>{data}</a>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </p>
                 );
               })}
@@ -108,6 +125,15 @@ class SubmitPage extends Component {
     // dispatch(Action.getQuotedSentence(params)).then(results => {
     //   console.log("getQuotedSentence");
     //   console.log(results);
+    // });
+  };
+
+  handleGetReference = param => {
+    const { dispatch } = this.props;
+    const params = { token: param };
+    // dispatch(Action.getReference(params)).then(urls => {
+    //   console.log("Reference");
+    //   console.log(urls);
     // });
   };
 }
