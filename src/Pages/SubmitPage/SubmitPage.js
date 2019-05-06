@@ -3,7 +3,7 @@
 
 import React, { Component } from "react";
 import * as Action from "../../ActionCreators/Action";
-import { SubmitEssay } from "../../Components";
+import { SubmitEssay, ScoreChart } from "../../Components";
 import { connect } from "react-redux";
 
 const defaultProps = {};
@@ -19,7 +19,7 @@ class SubmitPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: "0.5"
+      score: 0.7243439404
     };
   }
 
@@ -41,7 +41,10 @@ class SubmitPage extends Component {
           </div>
 
           <div className="submitPage__container__resultArea">
-            {this.state.score}
+            {/* {this.state.score} */}
+            <div className="submitPage__container__resultArea__scoreChart">
+              <ScoreChart score={this.state.score.toFixed(3)} />
+            </div>
           </div>
         </div>
       </div>
