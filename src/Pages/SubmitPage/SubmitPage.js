@@ -84,7 +84,7 @@ class SubmitPage extends Component {
               </p>
               {results.map(data => {
                 return (
-                  <p
+                  <div
                     key={data}
                     className="submitPage__container__resultArea__factCheck__sentence"
                     onClick={() => this.handleGetReference(data)}
@@ -94,12 +94,12 @@ class SubmitPage extends Component {
                       {url.map(data => {
                         return (
                           <li key={data}>
-                            <a href={data}>{data}</a>
+                            <a href={data} target="_sub">{data}</a>
                           </li>
                         );
                       })}
                     </ul>
-                  </p>
+                  </div>
                 );
               })}
             </div>
