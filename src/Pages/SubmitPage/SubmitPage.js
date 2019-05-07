@@ -94,7 +94,9 @@ class SubmitPage extends Component {
                       {url.map(data => {
                         return (
                           <li key={data}>
-                            <a href={data} target="_sub">{data}</a>
+                            <a href={data} target="_sub">
+                              {data}
+                            </a>
                           </li>
                         );
                       })}
