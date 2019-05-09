@@ -74,11 +74,11 @@ class FullTextPage extends Component {
       alert("You must enter at least one character.");
     } else {
       this.setState({ outputText: split(paragraph) });
-      // dispatch(Action.postEssay(params)).then(value => {
-      //   console.log(value);
-      //   this.setState({ token: value });
-      //   this.setState({ isSubmit: true });
-      // });
+      dispatch(Action.postEssay(params)).then(value => {
+        console.log(value);
+        this.setState({ token: value });
+        this.setState({ isSubmit: true });
+      });
       this.setState({ isSubmit: true });
     }
   };

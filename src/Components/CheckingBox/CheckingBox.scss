@@ -1,3 +1,20 @@
 /*
   CheckingBox Component Styling
 */
+.checkingBox {
+  &__target {
+    border: 1px solid $dark-gray;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    padding: 7px;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid red;
+    }
+
+    &-active {
+      background: lightgrey;
+    }
+  }
+}
