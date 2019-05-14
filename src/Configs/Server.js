@@ -4,4 +4,4 @@
 
 //export const ServerEndPoint = "https://api.lova.com/";
 
-export const ServerEndPoint = "http://220.74.125.107:8000/";
+export const ServerEndPoint = "http://ms.hanyang.ac.kr:8997/";

@@ -22,7 +22,7 @@ class ScoreChart extends Component {
 
   render() {
     const { score } = this.props;
-    const percentage = (score * 100).toFixed(1);
+    const percentage = score.toFixed(1);
     return (
       <Animate
         start={() => ({

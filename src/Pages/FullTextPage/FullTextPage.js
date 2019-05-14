@@ -23,7 +23,12 @@ const mapStateToProps = state => {
 class FullTextPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { paragraph: "", isSubmit: false, outputText: [], token: "" };
+    this.state = {
+      paragraph: "",
+      isSubmit: false,
+      outputText: [],
+      essayId: ""
+    };
   }
 
   componentWillMount() {
@@ -31,12 +36,12 @@ class FullTextPage extends Component {
   }
 
   render() {
-    const { paragraph, isSubmit, outputText, token } = this.state;
+    const { isSubmit, outputText, essayId } = this.state;
     return (
       <div className="fullTextPage">
         <NavBar isActive="fulltext" />
         {isSubmit ? (
-          <SubmitPage inputText={outputText} essay_id={token} />
+          <SubmitPage inputText={outputText} essay_id={essayId} />
         ) : (
           <div className="fullTextPage__inputArea">
             <div className="fullTextPage__inputArea__container">
@@ -75,11 +80,11 @@ class FullTextPage extends Component {
     } else {
       this.setState({ outputText: split(paragraph) });
       dispatch(Action.postEssay(params)).then(value => {
+        console.log("postEssay");
         console.log(value);
-        this.setState({ token: value });
+        this.setState({ essayId: value });
         this.setState({ isSubmit: true });
       });
-      this.setState({ isSubmit: true });
     }
   };
 }

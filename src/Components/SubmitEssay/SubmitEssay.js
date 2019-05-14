@@ -21,15 +21,15 @@ class SubmitEssay extends Component {
       <div className="submitEssay">
         {pageType === "thematic" ? (
           <p>
-            {claimText.map(data => {
+            {claimText.map((data, index) => {
               return (
                 <span
-                  key={"claim-" + data.range[0]}
+                  key={index}
                   className={cx("submitEssay__token", {
                     "submitEssay__token-active":
                       selectedToken === "claim-" + data.range[0]
                   })}
-                  onClick={() => this.handleClick("claim-" + data.range[0])}
+                  onClick={() => this.handleClick(data)}
                 >
                   {data.type === "WhiteSpace" ? (
                     data.raw.indexOf("\n") !== -1 ? (
@@ -47,14 +47,14 @@ class SubmitEssay extends Component {
             <br />
           </p>
         ) : null}
-        {inputText.map(data => {
+        {inputText.map((data, index) => {
           return (
             <span
-              key={data.range[0]}
+              key={index}
               className={cx("submitEssay__token", {
                 "submitEssay__token-active": selectedToken === data.range[0]
               })}
-              onClick={() => this.handleClick(data.range[0])}
+              onClick={() => this.handleClick(data)}
             >
               {data.type === "WhiteSpace" ? (
                 data.raw.indexOf("\n") !== -1 ? (
@@ -72,8 +72,16 @@ class SubmitEssay extends Component {
     );
   }
 
+  handleClaimClick = param => {
+    const { handleChangeResults } = this.props;
+    this.setState({ selectedToken: "claim-" + param.range[0] });
+    handleChangeResults(param.raw);
+  };
+
   handleClick = param => {
-    this.setState({ selectedToken: param });
+    const { handleChangeResults } = this.props;
+    this.setState({ selectedToken: param.range[0] });
+    handleChangeResults(param.raw);
   };
 }
 

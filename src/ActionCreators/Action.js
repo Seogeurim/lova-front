@@ -44,7 +44,7 @@ export const postEssay = params => {
 export const getEssayScore = params => {
   return async dispatch => {
     try {
-      let response = await fetch(ServerEndPoint + `api/${params.id}`, {
+      let response = await fetch(ServerEndPoint + `api/lv/${params.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
