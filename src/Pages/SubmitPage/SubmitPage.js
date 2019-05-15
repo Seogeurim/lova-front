@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import * as Action from "../../ActionCreators/Action";
 import { SubmitEssay, ScoreChart, CheckingBox } from "../../Components";
 import { connect } from "react-redux";
+import { BarLoader } from "react-spinners";
 
 const defaultProps = {};
 const propTypes = {};
@@ -19,11 +20,14 @@ class SubmitPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: null,
-      results: [
-        'In 2000, George Bierson’s "Marijuana, the Deceptive Drug", was published by the Massachusetts News.',
-        "Bierson concludes that marijuana is harmful in many ways, including brain damage, damage to the reproductive system, and weakening of the immune system."
-      ],
+      // score: null,
+      results: [],
+      isGetResult: false,
+      score: 72.3423095,
+      // results: [
+      //   'In 2000, George Bierson’s "Marijuana, the Deceptive Drug", was published by the Massachusetts News.',
+      //   "Bierson concludes that marijuana is harmful in many ways, including brain damage, damage to the reproductive system, and weakening of the immune system."
+      // ],
       reference: [
         {
           targetId: 0,
@@ -48,30 +52,41 @@ class SubmitPage extends Component {
   }
 
   componentWillMount() {
-    this.handleGetEssayScore();
+    // this.handleGetEssayScore();
     this.handleGetQuotedSentence();
-    this.handleGetReference();
+    // this.handleGetReference();
   }
 
   componentDidMount() {}
 
   render() {
     const { pageType, inputText, claimText } = this.props;
-    const { score, results, reference } = this.state;
+    const { score, results, reference, isGetResult } = this.state;
     return (
       <div className="submitPage">
-        <div className="submitPage__container">
-          <div className="submitPage__container__essayArea">
-            <SubmitEssay
-              pageType={pageType}
-              inputText={inputText}
-              claimText={claimText}
-              handleChangeResults={this.handleResults}
-            />
+        {!(score !== null && isGetResult) ? (
+          <div className="submitPage__loading">
+            <p className="submitPage__loading__helptext">
+              Please wait for <br />
+              the <span>Logic Validation</span> of your essay <br />
+              to be completed.
+            </p>
+            <div className="submitPage__loading__loader">
+              <BarLoader sizeUnit={"px"} width={350} color={"#3F51B5"} />
+            </div>
           </div>
+        ) : (
+          <div className="submitPage__container">
+            <div className="submitPage__container__essayArea">
+              <SubmitEssay
+                pageType={pageType}
+                inputText={inputText}
+                claimText={claimText}
+                handleChangeResults={this.handleResults}
+              />
+            </div>
 
-          <div className="submitPage__container__resultArea">
-            {score ? (
+            <div className="submitPage__container__resultArea">
               <div className="submitPage__container__resultArea__logicScore">
                 <div className="submitPage__container__resultArea__logicScore__scoreChart">
                   <ScoreChart score={score} />
@@ -109,16 +124,15 @@ class SubmitPage extends Component {
                   </p>
                 </div>
               </div>
-            ) : null}
-            {/* <-- loading */}
-            <div className="submitPage__container__resultArea__factCheck">
-              <p className="submitPage__container__resultArea__factCheck-title">
-                {results.length} quoted sentence in your essay.
-              </p>
-              <CheckingBox target={results} reference={reference} />
+              <div className="submitPage__container__resultArea__factCheck">
+                <p className="submitPage__container__resultArea__factCheck-title">
+                  {results.length} quoted sentence in your essay.
+                </p>
+                <CheckingBox target={results} reference={reference} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
@@ -130,6 +144,8 @@ class SubmitPage extends Component {
       console.log(score);
       if (score >= 100) {
         this.setState({ score: 100 });
+      } else if (score < 0) {
+        this.setState({ score: 0 });
       } else {
         this.setState({ score: score });
       }
@@ -142,7 +158,7 @@ class SubmitPage extends Component {
     dispatch(Action.getQuotedSentence(params)).then(results => {
       console.log("getQuotedSentence");
       console.log(results);
-      //this.setState({ results: results });
+      this.setState({ results: results, isGetResult: true });
     });
   };
 

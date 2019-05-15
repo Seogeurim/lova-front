@@ -3,7 +3,7 @@
 
 import React, { Component } from "react";
 import { Animate } from "react-move";
-import CircularProgressbar from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { easeQuadInOut } from "d3-ease";
 
@@ -41,9 +41,13 @@ class ScoreChart extends Component {
           return (
             <div className="scoreChart">
               <CircularProgressbar
-                percentage={roundedPercentage}
+                value={roundedPercentage}
                 text={`${roundedPercentage}%`}
                 counterClockwise
+                styles={buildStyles({
+                  textColor: "#1565C0",
+                  pathColor: "#1565C0"
+                })}
               />
             </div>
           );

@@ -3,6 +3,29 @@
 */
 
 .submitPage {
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 15%;
+
+    &__helptext {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+
+      & span {
+        color: $main-color;
+      }
+    }
+
+    &__loader {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   &__container {
     display: flex;
     flex-direction: row;
