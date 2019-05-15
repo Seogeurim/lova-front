@@ -24,10 +24,6 @@ class SubmitPage extends Component {
       results: [],
       isGetResult: false,
       score: 72.3423095,
-      // results: [
-      //   'In 2000, George Bierson’s "Marijuana, the Deceptive Drug", was published by the Massachusetts News.',
-      //   "Bierson concludes that marijuana is harmful in many ways, including brain damage, damage to the reproductive system, and weakening of the immune system."
-      // ],
       reference: [
         {
           targetId: 0,
