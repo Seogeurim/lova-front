@@ -29,7 +29,7 @@ class SubmitEssay extends Component {
                     "submitEssay__token-active":
                       selectedToken === "claim-" + data.range[0]
                   })}
-                  onClick={() => this.handleClick(data)}
+                  onClick={() => this.handleClaimClick(data)}
                 >
                   {data.type === "WhiteSpace" ? (
                     data.raw.indexOf("\n") !== -1 ? (

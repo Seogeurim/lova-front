@@ -32,6 +32,10 @@ class ThematicPage extends Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({ isSubmit: false });
+  }
+
   render() {
     const { isSubmit, outputPremise, outputClaim, essayId } = this.state;
     return (
@@ -89,7 +93,6 @@ class ThematicPage extends Component {
     const { dispatch } = this.props;
     const { claim, premise } = this.state;
     const paragraph = claim + " " + premise;
-    console.log(paragraph);
     const params = { paragraph: paragraph };
     if (this.state.paragraph === "") {
       alert("You must enter at least one character.");
