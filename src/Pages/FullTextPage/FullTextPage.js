@@ -6,7 +6,6 @@ import { NavBar } from "../../Components";
 import { SubmitPage } from "..";
 import * as Action from "../../ActionCreators/Action";
 import { connect } from "react-redux";
-import Textarea from "react-textarea-autosize";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { split } from "sentence-splitter";
@@ -75,7 +74,7 @@ class FullTextPage extends Component {
     const { dispatch } = this.props;
     const { paragraph } = this.state;
     const params = { paragraph: paragraph };
-    if (this.state.paragraph === "") {
+    if (paragraph === "") {
       alert("You must enter at least one character.");
     } else {
       this.setState({ outputText: split(paragraph) });

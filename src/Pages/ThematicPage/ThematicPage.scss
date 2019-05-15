@@ -1,38 +1,35 @@
 /*
   Thematic Page Styling
 */
-.inputArea {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  display: flex;
-  justify-content: center;
-  //border: 2px solid red;
+.thematicPage {
+  &__inputArea {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: center;
 
-  &__container {
-    padding: 30px;
-    width: 80%;
-    background-color: white;
-    box-shadow: 1px 8px 7px rgba(0, 0, 0, 0.3);
+    &__container {
+      padding: 30px;
+      width: 80%;
 
-    &__head {
-      margin-bottom: 10px;
-    }
-
-    &__title {
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-
-      & span {
-        font-weight: bold;
+      &__claimPart {
+        width: 100%;
+        margin-bottom: 2% !important;
       }
-    }
-    &__input {
-      width: 100%;
-      font-size: 1.2rem;
-      border: none;
-      border-bottom: 1px solid $dark-gray;
-      &:focus {
-        outline: none;
+
+      &__premisePart {
+        width: 100%;
+      }
+
+      &__submit {
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: flex-end;
+        &-btn {
+          &:focus {
+            outline: none;
+          }
+        }
       }
     }
   }

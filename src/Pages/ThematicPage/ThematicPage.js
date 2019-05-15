@@ -4,11 +4,20 @@
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
 import { SubmitPage } from "..";
-import Textarea from "react-textarea-autosize";
+import * as Action from "../../ActionCreators/Action";
+import { connect } from "react-redux";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { split } from "sentence-splitter";
 
 const defaultProps = {};
 const propTypes = {};
+
+const mapStateToProps = state => {
+  return {
+    actionResult: state.reducer.actionResult
+  };
+};
 
 class ThematicPage extends Component {
   constructor(props) {
@@ -17,49 +26,49 @@ class ThematicPage extends Component {
       claim: "",
       premise: "",
       isSubmit: false,
+      outputClaim: [],
       outputPremise: [],
-      outputClaim: []
+      essayId: ""
     };
   }
 
   render() {
-    console.log(this.state.isSubmit);
-    const { isSubmit, outputPremise, outputClaim } = this.state;
+    const { isSubmit, outputPremise, outputClaim, essayId } = this.state;
     return (
-      <div>
+      <div className="thematicPage">
         <NavBar isActive="thematic" />
         {isSubmit ? (
           <SubmitPage
-            inputType="thematic"
+            pageType="thematic"
             inputText={outputPremise}
             claimText={outputClaim}
+            essay_id={essayId}
           />
         ) : (
-          <div className="inputArea">
-            <div className="inputArea__container">
-              <div className="inputArea__container__head">
-                <p className="inputArea__container__title">
-                  Write the <span>Main Claim Sentence</span> of your essay.
-                </p>
-                <Textarea
-                  className="inputArea__container__input"
-                  maxRows={4}
-                  onChange={e => this.handleClaim(e)}
-                />
-              </div>
-              <div className="inputArea__container__body">
-                <p className="inputArea__container__title">
-                  Write the <span>Premises</span> of your essay.
-                </p>
-                <Textarea
-                  className="inputArea__container__input"
-                  minRows={10}
-                  maxRows={20}
-                  onChange={e => this.handlePremise(e)}
-                />
-              </div>
-              <div className="inputArea__container__footer">
-                <button onClick={this.handleSubmit}>Submit</button>
+          <div className="thematicPage__inputArea">
+            <div className="thematicPage__inputArea__container">
+              <TextField
+                className="thematicPage__inputArea__container__claimPart"
+                label="Write the Claim Sentences of your essay."
+                rowsMax="4"
+                multiline
+                onChange={e => this.handleClaim(e)}
+              />
+              <TextField
+                className="thematicPage__inputArea__container__premisePart"
+                label="Write the Premises for the claim sentences."
+                rowsMax="20"
+                multiline
+                onChange={e => this.handlePremise(e)}
+              />
+              <div className="thematicPage__inputArea__container__submit">
+                <Button
+                  className="thematicPage__inputArea__container__submit-btn"
+                  variant="outlined"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
@@ -77,14 +86,27 @@ class ThematicPage extends Component {
   };
 
   handleSubmit = e => {
+    const { dispatch } = this.props;
     const { claim, premise } = this.state;
-    this.setState({ outputClaim: split(claim) });
-    this.setState({ outputPremise: split(premise) });
-    this.setState({ isSubmit: true });
+    const paragraph = claim + " " + premise;
+    console.log(paragraph);
+    const params = { paragraph: paragraph };
+    if (this.state.paragraph === "") {
+      alert("You must enter at least one character.");
+    } else {
+      this.setState({ outputClaim: split(claim) });
+      this.setState({ outputPremise: split(premise) });
+      dispatch(Action.postEssay(params)).then(value => {
+        console.log("postEssay");
+        console.log(value);
+        this.setState({ essayId: value });
+        this.setState({ isSubmit: true });
+      });
+    }
   };
 }
 
 ThematicPage.defaultProps = defaultProps;
 ThematicPage.propTypes = propTypes;
 
-export default ThematicPage;
+export default connect(mapStateToProps)(ThematicPage);
