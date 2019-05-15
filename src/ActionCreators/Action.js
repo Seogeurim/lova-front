@@ -23,7 +23,7 @@ export const postEssay = params => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          essay: params.essay
+          paragraph: params.paragraph
         })
       });
       let responseJson = await response.json();

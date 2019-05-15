@@ -74,7 +74,7 @@ class FullTextPage extends Component {
   handleSubmit = e => {
     const { dispatch } = this.props;
     const { paragraph } = this.state;
-    const params = { essay: paragraph };
+    const params = { paragraph: paragraph };
     if (this.state.paragraph === "") {
       alert("You must enter at least one character.");
     } else {

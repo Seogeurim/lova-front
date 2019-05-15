@@ -83,15 +83,29 @@ class SubmitPage extends Component {
                   </p>
                   <p className="submitPage__container__resultArea__logicScore__scoreText-helptext">
                     This score indicates that the logical level of your essay is{" "}
-                    {score === 1 ? null : score > 0.9 ? null : score >
-                      0.8 ? null : score > 0.7 ? (
+                    {score === 100 ? (
+                      <span>
+                        perfect. The topic sentence clearly shows your argument,
+                        and the sentence that supports it also appears to be
+                        explaining the subject very well. I hope you will
+                        continue to write a good essay.
+                      </span>
+                    ) : score > 90 ? (
+                      <span>excellent.</span>
+                    ) : score > 80 ? (
+                      <span>good.</span>
+                    ) : score > 70 ? (
                       <span>
                         normal. The topic sentence is well supported by the
                         premise, but there are some sentences that are not
                         relevant to your argument. I hope you'll try to improve
                         this point.
                       </span>
-                    ) : score > 0.5 ? null : null}
+                    ) : score > 50 ? (
+                      <span>not so good.</span>
+                    ) : (
+                      <span>poor.</span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -114,7 +128,11 @@ class SubmitPage extends Component {
     const params = { id: essay_id };
     dispatch(Action.getEssayScore(params)).then(score => {
       console.log(score);
-      this.setState({ score: score });
+      if (score >= 100) {
+        this.setState({ score: 100 });
+      } else {
+        this.setState({ score: score });
+      }
     });
   };
 
