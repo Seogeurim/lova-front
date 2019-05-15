@@ -50,7 +50,6 @@ class SubmitPage extends Component {
   componentWillMount() {
     // this.handleGetEssayScore();
     this.handleGetQuotedSentence();
-    // this.handleGetReference();
   }
 
   componentDidMount() {}
@@ -177,8 +176,9 @@ class SubmitPage extends Component {
   };
 
   handleResults = param => {
-    this.setState({ results: this.state.results.concat(param) });
-    this.handleGetReference();
+    if (this.state.results.indexOf(param) === -1) {
+      this.setState({ results: this.state.results.concat(param) });
+    }
   };
 }
 
