@@ -68,6 +68,7 @@ class CheckingBox extends Component {
       this.setState({
         selectedToken: selectedToken.concat(target.indexOf(param))
       });
+      this.props.handleGetReference(param);
     }
   };
 }
