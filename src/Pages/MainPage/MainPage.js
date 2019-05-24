@@ -15,8 +15,16 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar />
+      <div className="mainPage">
+        {/* <NavBar /> */}
+        <div className="mainPage__header">
+          <div className="mainPage__header__title">LOVA</div>
+          <hr className="mainPage__header__line" />
+          <div className="mainPage__header__describe">
+            Realize automized Logicality & Reliability checking about your
+            essay.
+          </div>
+        </div>
       </div>
     );
   }
