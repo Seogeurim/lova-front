@@ -21,7 +21,7 @@ class CheckingBox extends Component {
     this.state = {
       selectedToken: [],
       checked: [],
-      isChecking: null
+      isChecking: []
     };
   }
 
@@ -45,11 +45,13 @@ class CheckingBox extends Component {
                 {data}
               </div>
               {selectedToken.indexOf(index) !== -1 ? (
-                <ul>
-                  {reference.map((data, index) =>
-                    data.targetId === currentIndex &&
-                    data.targetId !== isChecking
-                      ? data.refData.map((data, index) => {
+                isChecking.indexOf(index) !== -1 ? (
+                  <div>Loading...</div>
+                ) : (
+                  reference.map((data, index) =>
+                    data.targetId === currentIndex ? (
+                      <ul>
+                        {data.refData.map((data, index) => {
                           return (
                             <li key={index}>
                               <a href={data} target="_sub">
@@ -57,10 +59,11 @@ class CheckingBox extends Component {
                               </a>
                             </li>
                           );
-                        })
-                      : null
-                  )}
-                </ul>
+                        })}
+                      </ul>
+                    ) : null
+                  )
+                )
               ) : null}
             </div>
           );
@@ -81,7 +84,10 @@ class CheckingBox extends Component {
       this.setState({ selectedToken: selectedToken.concat(index) });
       if (checked.indexOf(index) === -1) {
         // check 한게 아니라면 reference 받아와야함
-        this.setState({ checked: checked.concat(index), isChecking: index });
+        this.setState({
+          checked: checked.concat(index),
+          isChecking: this.state.isChecking.concat(index)
+        });
         this.handlePostReference(data, index);
       }
     }
@@ -97,8 +103,10 @@ class CheckingBox extends Component {
         refData: result.url
       };
       this.props.handleReference(dataToSubmitPage);
+      this.setState({
+        isChecking: this.state.isChecking.filter(num => num !== index)
+      });
     });
-    this.setState({ isChecking: null });
   };
 }
 
