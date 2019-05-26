@@ -30,14 +30,12 @@ class SubmitPage extends Component {
   componentWillMount() {
     this.handleGetEssayScore();
     this.handleGetQuotedSentence();
-    this.handlePostReference();
   }
-
-  componentDidMount() {}
 
   render() {
     const { pageType, inputText, claimText } = this.props;
     const { score, results, reference, isGetResult } = this.state;
+    console.log("reference : ", reference);
     return (
       <div className="submitPage">
         {!(score !== null && isGetResult) ? (
@@ -104,8 +102,11 @@ class SubmitPage extends Component {
                 <p className="submitPage__container__resultArea__factCheck-title">
                   {results.length} quoted sentence in your essay.
                 </p>
-                <CheckingBox target={results} reference={reference} />
-                {/* handleReference={this.handleReference} */}
+                <CheckingBox
+                  target={results}
+                  reference={reference}
+                  handleReference={this.handleReference}
+                />
               </div>
             </div>
           </div>
@@ -139,23 +140,16 @@ class SubmitPage extends Component {
     });
   };
 
-  handleReference = dataFromChild => {
-    const { reference } = this.state;
-    this.setState({ reference: reference.concat(dataFromChild) });
-    console.log("reference : ", reference);
-  };
-
-  handlePostReference = () => {
-    const {results, isGetResult} = this.state;
-    if(isGetResult){
-      results.
-    }
-  };
-
   handleResults = param => {
-    if (this.state.results.indexOf(param) === -1) {
-      this.setState({ results: this.state.results.concat(param) });
+    const { results } = this.state;
+    if (results.indexOf(param) === -1) {
+      this.setState({ results: results.concat(param) });
     }
+  };
+
+  handleReference = dataFromCheckingBox => {
+    const { reference } = this.state;
+    this.setState({ reference: reference.concat(dataFromCheckingBox) });
   };
 }
 
