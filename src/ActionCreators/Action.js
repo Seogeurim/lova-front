@@ -98,7 +98,7 @@ export const postReference = params => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          paragraph: params.sentence
+          sentence: params.sentence
         })
       });
       let responseJson = await response.json();
