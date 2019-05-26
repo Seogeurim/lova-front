@@ -15,8 +15,8 @@
       border: 1.3px solid $main-color;
     }
 
-    // &-active {
-    //   background: lightgrey;
-    // }
+    &-active {
+      border: 1.3px solid $main-color;
+    }
   }
 }

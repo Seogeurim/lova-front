@@ -22,33 +22,15 @@ class SubmitPage extends Component {
     this.state = {
       score: null,
       results: [],
-      isGetResult: false,
-      reference: [
-        {
-          targetId: 0,
-          urls: [
-            "https://www.archives.gov/publications/prologue/1996/fall/butow.html",
-            "https://www.dailymail.co.uk/news/article-2237316/I-saw-John-Doe-Duffle-Bags-Flower-shop-seller-came-face-face-serial-killer-charged-murders.html",
-            "http://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/197/2016/02/20082314/Quotations-The-Writing-Center.pdf",
-            "https://history.army.mil/html/books/030/30-15-1/CMH_Pub_30-15-1.pdf",
-            "https://mafiadoc.com/fast-food-nation_5987e64d1723ddd069fb036d.html"
-          ]
-        },
-        {
-          targetId: 1,
-          urls: [
-            "https://www.npmjs.com/package/react-thumbnail",
-            "https://www.facebook.com/",
-            "https://www.naver.com/"
-          ]
-        }
-      ]
+      reference: [],
+      isGetResult: false
     };
   }
 
   componentWillMount() {
     this.handleGetEssayScore();
     this.handleGetQuotedSentence();
+    this.handlePostReference();
   }
 
   componentDidMount() {}
@@ -122,11 +104,8 @@ class SubmitPage extends Component {
                 <p className="submitPage__container__resultArea__factCheck-title">
                   {results.length} quoted sentence in your essay.
                 </p>
-                <CheckingBox
-                  target={results}
-                  reference={reference}
-                  handleGetReference={this.handleGetReference}
-                />
+                <CheckingBox target={results} reference={reference} />
+                {/* handleReference={this.handleReference} */}
               </div>
             </div>
           </div>
@@ -160,19 +139,17 @@ class SubmitPage extends Component {
     });
   };
 
-  handleGetReference = param => {
-    const { dispatch } = this.props;
+  handleReference = dataFromChild => {
     const { reference } = this.state;
-    dispatch(Action.getReference(param)).then(urls => {
-      console.log("Reference");
-      console.log(urls);
-      // this.setState({
-      //   reference: reference.concat({
-      //     targetId: results.indexOf(data),
-      //     urls: urls
-      //   })
-      // });
-    });
+    this.setState({ reference: reference.concat(dataFromChild) });
+    console.log("reference : ", reference);
+  };
+
+  handlePostReference = () => {
+    const {results, isGetResult} = this.state;
+    if(isGetResult){
+      results.
+    }
   };
 
   handleResults = param => {

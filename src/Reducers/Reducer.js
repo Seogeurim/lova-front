@@ -10,8 +10,8 @@ import {
   FAILED_TO_GET_ESSAY_SCORE,
   SUCCEED_TO_GET_QUOTED_SENTENCE,
   FAILED_TO_GET_QUOTED_SENTENCE,
-  SUCCEED_TO_GET_REFERENCE,
-  FAILED_TO_GET_REFERENCE
+  SUCCEED_TO_POST_REFERENCE,
+  FAILED_TO_POST_REFERENCE
 } from "../ActionCreators/Action";
 
 import { combineReducers } from "redux";
@@ -57,12 +57,12 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         token: action.payload
       });
-    case SUCCEED_TO_GET_REFERENCE:
+    case SUCCEED_TO_POST_REFERENCE:
       localStorage.setItem("token", action.payload);
       return Object.assign({}, state, {
         token: action.payload
       });
-    case FAILED_TO_GET_REFERENCE:
+    case FAILED_TO_POST_REFERENCE:
       localStorage.setItem("token", action.payload);
       return Object.assign({}, state, {
         token: action.payload
