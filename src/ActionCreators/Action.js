@@ -11,8 +11,8 @@ export const FAILED_TO_GET_ESSAY_SCORE = "FAILED_TO_GET_ESSAY_SCORE";
 export const SUCCEED_TO_GET_QUOTED_SENTENCE = "SUCCEED_TO_GET_QUOTED_SENTENCE";
 export const FAILED_TO_GET_QUOTED_SENTENCE = "FAILED_TO_GET_QUOTED_SENTENCE";
 
-export const SUCCEED_TO_GET_REFERENCE = "SUCCEED_TO_GET_REFERENCE";
-export const FAILED_TO_GET_REFERENCE = "FAILED_TO_GET_REFERENCE";
+export const SUCCEED_TO_POST_REFERENCE = "SUCCEED_TO_POST_REFERENCE";
+export const FAILED_TO_POST_REFERENCE = "FAILED_TO_POST_REFERENCE";
 
 export const postEssay = params => {
   return async dispatch => {
@@ -89,24 +89,27 @@ export const getQuotedSentence = params => {
   };
 };
 
-export const getReference = params => {
+export const postReference = params => {
   return async dispatch => {
     try {
-      let response = await fetch(ServerEndPoint + `api/tv/${params.token}`, {
-        method: "GET",
+      let response = await fetch(ServerEndPoint + "api/tv/", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify({
+          sentence: params.sentence
+        })
       });
       let responseJson = await response.json();
       await dispatch({
-        type: SUCCEED_TO_GET_REFERENCE,
-        payload: responseJson.url
+        type: SUCCEED_TO_POST_REFERENCE,
+        payload: responseJson
       });
-      return responseJson.url;
+      return responseJson;
     } catch (error) {
       dispatch({
-        type: FAILED_TO_GET_REFERENCE,
+        type: FAILED_TO_POST_REFERENCE,
         payload: { data: "NETWORK_ERROR" }
       });
     }

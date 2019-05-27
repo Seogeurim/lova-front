@@ -20,43 +20,22 @@ class SubmitPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // score: null,
+      score: null,
       results: [],
-      isGetResult: false,
-      score: 72.3423095,
-      reference: [
-        {
-          targetId: 0,
-          urls: [
-            "https://www.archives.gov/publications/prologue/1996/fall/butow.html",
-            "https://www.dailymail.co.uk/news/article-2237316/I-saw-John-Doe-Duffle-Bags-Flower-shop-seller-came-face-face-serial-killer-charged-murders.html",
-            "http://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/197/2016/02/20082314/Quotations-The-Writing-Center.pdf",
-            "https://history.army.mil/html/books/030/30-15-1/CMH_Pub_30-15-1.pdf",
-            "https://mafiadoc.com/fast-food-nation_5987e64d1723ddd069fb036d.html"
-          ]
-        },
-        {
-          targetId: 1,
-          urls: [
-            "https://www.npmjs.com/package/react-thumbnail",
-            "https://www.facebook.com/",
-            "https://www.naver.com/"
-          ]
-        }
-      ]
+      reference: [],
+      isGetResult: false
     };
   }
 
   componentWillMount() {
-    // this.handleGetEssayScore();
+    this.handleGetEssayScore();
     this.handleGetQuotedSentence();
   }
-
-  componentDidMount() {}
 
   render() {
     const { pageType, inputText, claimText } = this.props;
     const { score, results, reference, isGetResult } = this.state;
+    console.log("reference : ", reference);
     return (
       <div className="submitPage">
         {!(score !== null && isGetResult) ? (
@@ -123,7 +102,11 @@ class SubmitPage extends Component {
                 <p className="submitPage__container__resultArea__factCheck-title">
                   {results.length} quoted sentence in your essay.
                 </p>
-                <CheckingBox target={results} reference={reference} />
+                <CheckingBox
+                  target={results}
+                  reference={reference}
+                  handleReference={this.handleReference}
+                />
               </div>
             </div>
           </div>
@@ -157,28 +140,16 @@ class SubmitPage extends Component {
     });
   };
 
-  handleGetReference = () => {
-    const { dispatch } = this.props;
-    const { results, reference } = this.state;
-    results.map(data => {
-      const param = { token: data };
-      dispatch(Action.getReference(param)).then(urls => {
-        console.log("Reference");
-        console.log(urls);
-        // this.setState({
-        //   reference: reference.concat({
-        //     targetId: results.indexOf(data),
-        //     urls: urls
-        //   })
-        // });
-      });
-    });
+  handleResults = param => {
+    const { results } = this.state;
+    if (results.indexOf(param) === -1) {
+      this.setState({ results: results.concat(param) });
+    }
   };
 
-  handleResults = param => {
-    if (this.state.results.indexOf(param) === -1) {
-      this.setState({ results: this.state.results.concat(param) });
-    }
+  handleReference = dataFromCheckingBox => {
+    const { reference } = this.state;
+    this.setState({ reference: reference.concat(dataFromCheckingBox) });
   };
 }
 
