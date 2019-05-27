@@ -50,7 +50,7 @@ class CheckingBox extends Component {
                 ) : (
                   reference.map((data, index) =>
                     data.targetId === currentIndex ? (
-                      <ul>
+                      <ul className="checkingBox__reference">
                         {data.refData.map((data, index) => {
                           return (
                             <li key={index}>
