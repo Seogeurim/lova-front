@@ -17,7 +17,7 @@ class MainPage extends Component {
   render() {
     return (
       <div className="mainPage">
-        <NavBar />
+        <NavBar type="main" />
         <div className="mainPage__background">
           <img src={background} alt="background" />
         </div>
