@@ -3,6 +3,7 @@
 
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
+import cx from "classnames";
 import background from "../../Assets/Images/main_background.jpg";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 
@@ -12,13 +13,17 @@ const propTypes = {};
 class MainPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { scrollTop: null, isMain: true };
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.onScroll);
   }
 
   render() {
     return (
       <div className="mainPage">
-        <NavBar type="main" />
+        <NavBar type={cx({ main: this.state.isMain })} />
         <div className="mainPage__background">
           <img src={background} alt="background" />
         </div>
@@ -33,9 +38,22 @@ class MainPage extends Component {
             <KeyboardArrowDown />
           </div>
         </div>
+        <div>
+          <img src={background} alt="background" />
+        </div>
       </div>
     );
   }
+
+  onScroll = e => {
+    const scrollTop = ("scroll", e.srcElement.scrollingElement.scrollTop);
+    this.setState({ scrollTop });
+    if (scrollTop === 0) {
+      this.setState({ isMain: true });
+    } else {
+      this.setState({ isMain: false });
+    }
+  };
 }
 
 MainPage.defaultProps = defaultProps;
