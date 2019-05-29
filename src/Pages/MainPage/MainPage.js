@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { NavBar, ScoreChart } from "../../Components";
 import cx from "classnames";
 import background from "../../Assets/Images/main_background.jpg";
+import fakenews from "../../Assets/Images/fakenews.jpg";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 
 const defaultProps = {};
@@ -42,7 +43,7 @@ class MainPage extends Component {
           </div>
         </div>
 
-        <div className="mainPage__page1">
+        <div className="mainPage__page1" onScroll={this.handleScroll}>
           <div className="mainPage__page1__section1">
             <div className="mainPage__page1__section1__scoreChart">
               <ScoreChart score={78.6} />
@@ -52,7 +53,11 @@ class MainPage extends Component {
                 Great Logical Writing, <br /> now it's Easier.
               </div>
               <div className="mainPage__page1__section1__title-describe">
-                You can see how well you explain your argument.
+                You can see how well your essay supports your argument. You can
+                also see how logical the article you're trying to identify is.
+                This feature allows you to check the logic of your essay or
+                filter out articles that lack logic. The degree of logic is
+                expressed as a percentage.
               </div>
             </div>
           </div>
@@ -63,9 +68,15 @@ class MainPage extends Component {
                 Automatic Fact Checking
               </div>
               <div className="mainPage__page1__section2__title-describe">
-                Automatically categorize quoted sentences <br /> and examine how
-                reliable they are.
+                You will automatically categorize sentences that contain
+                citations from your essays. It will also automatically search
+                for references to find out if the categorized sentence is a
+                reliable sentence. If you want to check the facts, you can also
+                select them yourself.
               </div>
+            </div>
+            <div className="mainPage__page1__section2__img">
+              <img src={fakenews} alt="factChecking" />
             </div>
           </div>
         </div>
@@ -104,6 +115,13 @@ class MainPage extends Component {
       this.setState({ isMain: true });
     } else {
       this.setState({ isMain: false });
+    }
+  };
+
+  handleScroll = e => {
+    let element = e.target;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      console.log("hey");
     }
   };
 }
