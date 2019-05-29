@@ -8,7 +8,7 @@
 
   &__background {
     width: 100%;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     img {
       width: 100%;
@@ -17,7 +17,8 @@
 
   &__header {
     width: 100%;
-    position: absolute;
+    height: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,20 +26,129 @@
 
     &__title {
       font-family: "Amaranth", sans-serif;
-      margin-top: 10%;
       text-align: center;
-      font-size: 6rem;
-    }
 
-    &__describe {
-      font-family: "Amaranth", sans-serif;
-      text-align: center;
-      font-size: 1.3rem;
+      &-head {
+        margin-top: 8%;
+        font-size: 6rem;
+      }
+
+      &-describe {
+        font-size: 1.3rem;
+      }
     }
 
     &__scrollDown {
       text-align: center;
       margin-top: 26%;
+    }
+  }
+
+  &__page1 {
+    padding-top: 3.2rem;
+    height: 100%;
+    background-image: linear-gradient(to top, #accbee 0%, #f2f4f3 100%);
+
+    &__section1 {
+      width: 100%;
+      height: 50%;
+      position: relative;
+      padding-top: 5rem;
+      display: flex;
+
+      &__scoreChart {
+        width: 20%;
+        margin-left: 5%;
+      }
+
+      &__title {
+        margin-left: 3%;
+        &-head {
+          font-size: 3rem;
+        }
+        &-describe {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &__section2 {
+      width: 100%;
+      height: 50%;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      &__title {
+        margin-right: 3%;
+        &-head {
+          font-size: 3rem;
+        }
+        &-describe {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  &__page2 {
+    padding-top: 3.2rem;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #accbee 0%, ghostwhite 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__title {
+      text-align: center;
+      font-size: 2.5rem;
+      padding: 1% 0;
+    }
+
+    &__container {
+      height: 70%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      &__box {
+        margin: 0 1%;
+        width: 23%;
+        background-color: rgba($color: white, $alpha: 0.5);
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.075);
+      }
+    }
+  }
+
+  &__footer {
+    position: relative;
+    padding-top: 3.2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      margin-top: 8%;
+      text-align: center;
+      &-head {
+        font-size: 3rem;
+      }
+      &-describe {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__end {
+      width: 100%;
+      height: 30%;
+      position: absolute;
+      bottom: 0;
+      background-image: linear-gradient(to top, #accbee 0%, ghostwhite 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
     }
   }
 }
