@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { NavBar } from "../../Components";
 import background from "../../Assets/Images/main_background.jpg";
+import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 
 const defaultProps = {};
 const propTypes = {};
@@ -21,14 +22,16 @@ class MainPage extends Component {
         <div className="mainPage__background">
           <img src={background} alt="background" />
         </div>
-
         <div className="mainPage__header">
-          {/* <div className="mainPage__header__title">LOVA</div>
-          <hr className="mainPage__header__line" />
+          <div className="mainPage__header__title">Logic Validation</div>
           <div className="mainPage__header__describe">
             Realize automized Logicality & Reliability checking about your
             essay.
-          </div> */}
+          </div>
+          <div className="mainPage__header__scrollDown">
+            <p>Scroll down</p>
+            <KeyboardArrowDown />
+          </div>
         </div>
       </div>
     );
