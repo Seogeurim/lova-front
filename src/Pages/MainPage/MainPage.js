@@ -6,6 +6,10 @@ import { NavBar, ScoreChart } from "../../Components";
 import cx from "classnames";
 import background from "../../Assets/Images/main_background.jpg";
 import fakenews from "../../Assets/Images/fakenews.jpg";
+import REACTlogo from "../../Assets/Icons/reactIcon.svg";
+import REDUXlogo from "../../Assets/Icons/reduxIcon.svg";
+import NODEJSlogo from "../../Assets/Icons/nodejsIcon.svg";
+import TSlogo from "../../Assets/Icons/tensorflow.svg";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 
 const defaultProps = {};
@@ -98,10 +102,29 @@ class MainPage extends Component {
             </div>
           </div>
           <div className="mainPage__footer__end">
-            <div className="mainPage__footer__end-system">
-              React / Redux / NodeJS / Tensorflow
+            <div className="mainPage__footer__end__tools">
+              <img
+                className="mainPage__footer__end__tools-react"
+                src={REACTlogo}
+                alt="react"
+              />
+              <img
+                className="mainPage__footer__end__tools-redux"
+                src={REDUXlogo}
+                alt="redux"
+              />
+              <img
+                className="mainPage__footer__end__tools-nodejs"
+                src={NODEJSlogo}
+                alt="nodejs"
+              />
+              <img
+                className="mainPage__footer__end__tools-ts"
+                src={TSlogo}
+                alt="tensorflow"
+              />
             </div>
-            <div className="mainPage__footer__end-contact">Github</div>
+            {/* <div className="mainPage__footer__end-contact">Github</div> */}
           </div>
         </div>
       </div>
