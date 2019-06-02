@@ -10,13 +10,18 @@ import "animate.css/animate.min.css";
 
 import background from "../../Assets/Images/main_background.jpg";
 import fakenews from "../../Assets/Images/fakenews.jpg";
+import TextIcon from "../../Assets/Icons/instruction.svg";
+import EssayIcon from "../../Assets/Icons/note.svg";
+import VideoIcon from "../../Assets/Icons/youtube.svg";
+import Girl1 from "../../Assets/Icons/G1.svg";
+import Girl2 from "../../Assets/Icons/G2.svg";
+import Boy1 from "../../Assets/Icons/B1.svg";
+import Boy2 from "../../Assets/Icons/B2.svg";
 import REACTlogo from "../../Assets/Icons/reactIcon.svg";
 import REDUXlogo from "../../Assets/Icons/reduxIcon.svg";
 import NODEJSlogo from "../../Assets/Icons/nodejsIcon.svg";
 import TSlogo from "../../Assets/Icons/tensorflow.svg";
-import TextIcon from "../../Assets/Icons/instruction.svg";
-import EssayIcon from "../../Assets/Icons/note.svg";
-import VideoIcon from "../../Assets/Icons/youtube.svg";
+import Gitlogo from "../../Assets/Icons/github-logo.svg";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 
 const defaultProps = {};
@@ -25,7 +30,40 @@ const propTypes = {};
 class MainPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { scrollTop: null, isMain: true };
+    this.state = {
+      scrollTop: null,
+      isMain: true,
+      members: [
+        {
+          name: "DongOnee",
+          icon: Boy1,
+          task: "Logic Validation / Web Backend",
+          git: "https://github.com/DongOnee/lova-backend",
+          gitTitle: "Lova-Backend"
+        },
+        {
+          name: "Hyein",
+          icon: Girl2,
+          task: "Sentence Classification",
+          git: "https://github.com/namhyein/textclassification_cap",
+          gitTitle: "Text Classification"
+        },
+        {
+          name: "Grimeee",
+          icon: Girl1,
+          task: "Web Application",
+          git: "https://github.com/Seogeurim/lova-front",
+          gitTitle: "Lova-Front"
+        },
+        {
+          name: "Jisung",
+          icon: Boy2,
+          task: "Truth Judgement",
+          git: "https://github.com/jisung0920/nlstc",
+          gitTitle: "Nlstc"
+        }
+      ]
+    };
   }
 
   componentWillMount() {
@@ -37,6 +75,7 @@ class MainPage extends Component {
   }
 
   render() {
+    const { members } = this.state;
     return (
       <div className="mainPage">
         <NavBar type={cx({ main: this.state.isMain })} />
@@ -108,77 +147,99 @@ class MainPage extends Component {
         <div className="mainPage__page2">
           <div className="mainPage__page2__title">Choose the Input Type.</div>
           <div className="mainPage__page2__container">
-            <div className="mainPage__page2__container__box">
-              <h1 className="mainPage__page2__container__box__title">
-                Fulltext
-              </h1>
-              <img
-                className="mainPage__page2__container__box__icon"
-                src={TextIcon}
-                alt="inputType"
-              />
-              <p className="mainPage__page2__container__box__describe">
-                Please enter the content you want to enter in fulltext at once.
-                Determines the logic and reliability of the entire article.
-              </p>
-              <div className="mainPage__page2__container__box__btn">
-                <Fab
-                  variant="extended"
-                  size="medium"
-                  className="mainPage__page2__container__box__btn-fab"
-                  onClick={this.handleFulltext}
-                >
-                  Go FullText Page
-                </Fab>
+            <ScrollAnimation
+              className="mainPage__page2__container__boxS"
+              animateIn="slideInUp"
+            >
+              <div className="mainPage__page2__container__box">
+                <h1 className="mainPage__page2__container__box__title">
+                  Fulltext
+                </h1>
+                <img
+                  className="mainPage__page2__container__box__icon"
+                  src={TextIcon}
+                  alt="inputType"
+                />
+                <p className="mainPage__page2__container__box__describe">
+                  Please enter the content you want to enter in fulltext at
+                  once. Determines the logic and reliability of the entire
+                  article.
+                </p>
+                <div className="mainPage__page2__container__box__btn">
+                  <Fab
+                    variant="extended"
+                    size="medium"
+                    className="mainPage__page2__container__box__btn-fab"
+                    onClick={this.handleFulltext}
+                  >
+                    Go FullText Page
+                  </Fab>
+                </div>
               </div>
-            </div>
-            <div className="mainPage__page2__container__box">
-              <h1 className="mainPage__page2__container__box__title">
-                Thematic
-              </h1>
-              <img
-                className="mainPage__page2__container__box__icon"
-                src={EssayIcon}
-                alt="inputType"
-              />
-              <p className="mainPage__page2__container__box__describe">
-                Please divide the input by argument and premise. Determine how
-                well the premise supports the argument and how reliable it is.
-              </p>
-              <div className="mainPage__page2__container__box__btn">
-                <Fab
-                  variant="extended"
-                  size="medium"
-                  className="mainPage__page2__container__box__btn-fab"
-                  onClick={this.handleThematic}
-                >
-                  Go Thematic Page
-                </Fab>
+            </ScrollAnimation>
+
+            <ScrollAnimation
+              className="mainPage__page2__container__boxS"
+              animateIn="slideInUp"
+              delay={250}
+            >
+              <div className="mainPage__page2__container__box">
+                <h1 className="mainPage__page2__container__box__title">
+                  Thematic
+                </h1>
+                <img
+                  className="mainPage__page2__container__box__icon"
+                  src={EssayIcon}
+                  alt="inputType"
+                />
+                <p className="mainPage__page2__container__box__describe">
+                  Please divide the input by argument and premise. Determine how
+                  well the premise supports the argument and how reliable it is.
+                </p>
+                <div className="mainPage__page2__container__box__btn">
+                  <Fab
+                    variant="extended"
+                    size="medium"
+                    className="mainPage__page2__container__box__btn-fab"
+                    onClick={this.handleThematic}
+                  >
+                    Go Thematic Page
+                  </Fab>
+                </div>
               </div>
-            </div>
-            <div className="mainPage__page2__container__box">
-              <h1 className="mainPage__page2__container__box__title">Video</h1>
-              <img
-                className="mainPage__page2__container__box__icon"
-                src={VideoIcon}
-                alt="inputType"
-              />
-              <p className="mainPage__page2__container__box__describe">
-                Enter a video that requires a logic validation check as a
-                YouTube link. Extract subtitles from the video to conduct logic
-                and reliability tests.
-              </p>
-              <div className="mainPage__page2__container__box__btn">
-                <Fab
-                  variant="extended"
-                  size="medium"
-                  className="mainPage__page2__container__box__btn-fab"
-                  onClick={this.handleVideo}
-                >
-                  Go Video Page
-                </Fab>
+            </ScrollAnimation>
+
+            <ScrollAnimation
+              className="mainPage__page2__container__boxS"
+              animateIn="slideInUp"
+              delay={500}
+            >
+              <div className="mainPage__page2__container__box">
+                <h1 className="mainPage__page2__container__box__title">
+                  Video
+                </h1>
+                <img
+                  className="mainPage__page2__container__box__icon"
+                  src={VideoIcon}
+                  alt="inputType"
+                />
+                <p className="mainPage__page2__container__box__describe">
+                  Enter a video that requires a logic validation check as a
+                  YouTube link. Extract subtitles from the video to conduct
+                  logic and reliability tests.
+                </p>
+                <div className="mainPage__page2__container__box__btn">
+                  <Fab
+                    variant="extended"
+                    size="medium"
+                    className="mainPage__page2__container__box__btn-fab"
+                    onClick={this.handleVideo}
+                  >
+                    Go Video Page
+                  </Fab>
+                </div>
               </div>
-            </div>
+            </ScrollAnimation>
           </div>
         </div>
 
@@ -188,6 +249,33 @@ class MainPage extends Component {
             <div className="mainPage__footer__title-describe">
               Four People who developed a system LOVA
             </div>
+          </div>
+          <div className="mainPage__footer__content">
+            {members.map(data => {
+              return (
+                <div className="mainPage__footer__content__member">
+                  <ScrollAnimation animateIn="flipInX">
+                    <img
+                      className="mainPage__footer__content__member-img"
+                      src={data.icon}
+                      alt="member"
+                    />
+                    <h1 className="mainPage__footer__content__member-name">
+                      {data.name}
+                    </h1>
+                    <p className="mainPage__footer__content__member-task">
+                      {data.task}
+                    </p>
+                    <div className="mainPage__footer__content__member__git">
+                      <a href={data.git} target="_sub">
+                        <img src={Gitlogo} alt="github" />
+                        {data.gitTitle}
+                      </a>
+                    </div>
+                  </ScrollAnimation>
+                </div>
+              );
+            })}
           </div>
           <div className="mainPage__footer__end">
             <div className="mainPage__footer__end__tools">
@@ -212,7 +300,6 @@ class MainPage extends Component {
                 alt="tensorflow"
               />
             </div>
-            {/* <div className="mainPage__footer__end-contact">Github</div> */}
           </div>
         </div>
       </div>
