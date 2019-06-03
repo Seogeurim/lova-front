@@ -79,21 +79,34 @@ class SubmitPage extends Component {
                         explaining the subject very well. I hope you will
                         continue to write a good essay.
                       </span>
-                    ) : score > 90 ? (
-                      <span>excellent.</span>
-                    ) : score > 80 ? (
-                      <span>good.</span>
-                    ) : score > 70 ? (
+                    ) : score > 85 ? (
                       <span>
-                        normal. The topic sentence is well supported by the
+                        good. The topic sentence is well supported by the
                         premise, but there are some sentences that are not
                         relevant to your argument. I hope you'll try to improve
                         this point.
                       </span>
+                    ) : score > 70 ? (
+                      <span>
+                        normal. The overall writing looks good, but there are
+                        some sentences that don't fit the flow of this essay.
+                        This makes it difficult to get the gist of the writing.
+                        I hope you'll rewrite this part.
+                      </span>
                     ) : score > 50 ? (
-                      <span>not so good.</span>
+                      <span>
+                        not so good. The sentences in the essay are not
+                        organically linked to each other. Because of that, It
+                        doesn't seem clear what you're trying to argue. So I
+                        hope you'll rewrite it according to your argument.
+                      </span>
                     ) : (
-                      <span>poor.</span>
+                      <span>
+                        poor. Not only the argument is unclear in this essay,
+                        but the sentences supporting the argument are also not
+                        logical. We hope to establish a clear argument and find
+                        a basis for it again.
+                      </span>
                     )}
                   </p>
                 </div>

@@ -102,7 +102,7 @@ class MainPage extends Component {
         </div>
 
         <div className="mainPage__page1" onScroll={this.handleScroll}>
-          <ScrollAnimation animateIn="fadeIn" duration={1.5} delay={300}>
+          <ScrollAnimation animateIn="fadeIn" duration={1.3}>
             <div className="mainPage__page1__section1">
               <div className="mainPage__page1__section1__title">
                 <div className="mainPage__page1__section1__title-label">
@@ -122,7 +122,7 @@ class MainPage extends Component {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation animateIn="fadeIn" duration={1.5} delay={600}>
+          <ScrollAnimation animateIn="fadeIn" duration={1.3} delay={150}>
             <div className="mainPage__page1__section2">
               <div className="mainPage__page1__section2__title">
                 <div className="mainPage__page1__section1__title-label">
