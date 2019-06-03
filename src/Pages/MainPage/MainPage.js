@@ -2,14 +2,13 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from "react";
-import { NavBar, ScoreChart } from "../../Components";
+import { NavBar } from "../../Components";
 import Fab from "@material-ui/core/Fab";
 import cx from "classnames";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
 
 import background from "../../Assets/Images/main_background.jpg";
-import fakenews from "../../Assets/Images/fakenews.jpg";
 import TextIcon from "../../Assets/Icons/instruction.svg";
 import EssayIcon from "../../Assets/Icons/note.svg";
 import VideoIcon from "../../Assets/Icons/youtube.svg";
@@ -103,14 +102,14 @@ class MainPage extends Component {
         </div>
 
         <div className="mainPage__page1" onScroll={this.handleScroll}>
-          <ScrollAnimation animateIn="fadeIn">
+          <ScrollAnimation animateIn="fadeIn" duration={1.5} delay={300}>
             <div className="mainPage__page1__section1">
-              <div className="mainPage__page1__section1__scoreChart">
-                <ScoreChart score={78.6} />
-              </div>
               <div className="mainPage__page1__section1__title">
+                <div className="mainPage__page1__section1__title-label">
+                  <span>01.</span> <hr /> <span>Logicality Validation</span>
+                </div>
                 <div className="mainPage__page1__section1__title-head">
-                  Great Logical Writing, <br /> now it's Easier.
+                  Good Logical Writing, <br /> now it's Easier.
                 </div>
                 <div className="mainPage__page1__section1__title-describe">
                   You can see how well your essay supports your argument. You
@@ -123,11 +122,15 @@ class MainPage extends Component {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation animateIn="fadeIn">
+          <ScrollAnimation animateIn="fadeIn" duration={1.5} delay={600}>
             <div className="mainPage__page1__section2">
               <div className="mainPage__page1__section2__title">
+                <div className="mainPage__page1__section1__title-label">
+                  <span>02.</span> <hr /> <span>Reliability Validation</span>
+                </div>
                 <div className="mainPage__page1__section2__title-head">
-                  Automatic Fact Checking
+                  Automatic <br />
+                  Fact Checking
                 </div>
                 <div className="mainPage__page1__section2__title-describe">
                   You will automatically categorize sentences that contain
@@ -136,9 +139,6 @@ class MainPage extends Component {
                   reliable sentence. If you want to check the facts, you can
                   also select them yourself.
                 </div>
-              </div>
-              <div className="mainPage__page1__section2__img">
-                <img src={fakenews} alt="factChecking" />
               </div>
             </div>
           </ScrollAnimation>
