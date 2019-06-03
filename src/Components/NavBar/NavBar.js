@@ -10,11 +10,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavLink
 } from "reactstrap";
 import cx from "classnames";
 import MainLogo from "../../Assets/Images/lova_main.png";
@@ -38,9 +34,16 @@ class NavBar extends Component {
   }
 
   render() {
-    const { isActive } = this.props;
+    const { isActive, type } = this.props;
     return (
-      <Navbar className="navBar" color="light" light expand="md">
+      <Navbar
+        className={cx("navBar", {
+          "navBar-main": type === "main"
+        })}
+        light
+        expand="md"
+        fixed="top"
+      >
         <NavbarBrand className="navBar__logo" onClick={this.handleHome}>
           <img src={MainLogo} width={30} alt="lova-logo" />
           <span>LOVA</span>
@@ -78,17 +81,6 @@ class NavBar extends Component {
                 Video
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Navbar>
