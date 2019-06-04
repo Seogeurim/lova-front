@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import cx from "classnames";
 import * as Action from "../../ActionCreators/Action";
 import { connect } from "react-redux";
+import ContentLoader from "react-content-loader";
 
 const defaultProps = {};
 const propTypes = {};
@@ -15,6 +16,27 @@ const mapStateToProps = state => {
   };
 };
 
+const RefLoader = props => (
+  <div className="checkingBox__content-loader">
+    <ContentLoader
+      height={90}
+      width={400}
+      speed={2}
+      primaryColor="#f3f3f3"
+      secondaryColor="#ecebeb"
+    >
+      <circle cx="35" cy="15" r="4" />
+      <rect x="55" y="10" rx="5" ry="5" width="300" height="8" />
+      <circle cx="35" cy="35" r="4" />
+      <rect x="55" y="30" rx="5" ry="5" width="300" height="8" />
+      <circle cx="35" cy="55" r="4" />
+      <rect x="55" y="50" rx="5" ry="5" width="300" height="8" />
+      <circle cx="35" cy="75" r="4" />
+      <rect x="55" y="70" rx="5" ry="5" width="300" height="8" />
+    </ContentLoader>
+  </div>
+);
+
 class CheckingBox extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +46,13 @@ class CheckingBox extends Component {
       isChecking: []
     };
   }
+
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousProps.target !== this.props.target) {
+  //     window.scrollBy(0, 1);
+  //     console.log("update");
+  //   }
+  // }
 
   render() {
     const { target, reference } = this.props;
@@ -46,21 +75,29 @@ class CheckingBox extends Component {
               </div>
               {selectedToken.indexOf(index) !== -1 ? (
                 isChecking.indexOf(index) !== -1 ? (
-                  <div>Loading...</div>
+                  <div className="checkingBox__content">
+                    <RefLoader />
+                  </div>
                 ) : (
                   reference.map((data, index) =>
                     data.targetId === currentIndex ? (
-                      <ul className="checkingBox__reference">
-                        {data.refData.map((data, index) => {
-                          return (
-                            <li key={index}>
-                              <a href={data} target="_sub">
-                                {data}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                      data.refData === null || data.refData === [] ? (
+                        <div className="checkingBox__content__zero">
+                          No results found.
+                        </div>
+                      ) : (
+                        <ul className="checkingBox__content__urls">
+                          {data.refData.map((data, index) => {
+                            return (
+                              <li key={index}>
+                                <a href={data} target="_sub">
+                                  {data}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )
                     ) : null
                   )
                 )
@@ -95,12 +132,17 @@ class CheckingBox extends Component {
 
   handlePostReference = (data, index) => {
     const { dispatch } = this.props;
-    const params = { sentence: data.replace("’", "'") };
+    const params = {
+      sentence: data
+        .replace("’", "'")
+        .replace("“", '"')
+        .replace("”", '"')
+    };
     dispatch(Action.postReference(params)).then(result => {
       console.log("postReference result : ", result);
       const dataToSubmitPage = {
         targetId: index,
-        refData: result.url
+        refData: result !== undefined ? result.url : null
       };
       this.props.handleReference(dataToSubmitPage);
       this.setState({
