@@ -74,17 +74,23 @@ class CheckingBox extends Component {
                 ) : (
                   reference.map((data, index) =>
                     data.targetId === currentIndex ? (
-                      <ul className="checkingBox__content">
-                        {data.refData.map((data, index) => {
-                          return (
-                            <li key={index}>
-                              <a href={data} target="_sub">
-                                {data}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                      data.refData === null || data.refData === [] ? (
+                        <div className="checkingBox__content__zero">
+                          No results found.
+                        </div>
+                      ) : (
+                        <ul className="checkingBox__content__urls">
+                          {data.refData.map((data, index) => {
+                            return (
+                              <li key={index}>
+                                <a href={data} target="_sub">
+                                  {data}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )
                     ) : null
                   )
                 )
@@ -119,7 +125,12 @@ class CheckingBox extends Component {
 
   handlePostReference = (data, index) => {
     const { dispatch } = this.props;
-    const params = { sentence: data.replace("’", "'") };
+    const params = {
+      sentence: data
+        .replace("’", "'")
+        .replace("“", '"')
+        .replace("”", '"')
+    };
     dispatch(Action.postReference(params)).then(result => {
       console.log("postReference result : ", result);
       const dataToSubmitPage = {
