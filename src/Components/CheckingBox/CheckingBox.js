@@ -47,6 +47,13 @@ class CheckingBox extends Component {
     };
   }
 
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousProps.target !== this.props.target) {
+  //     window.scrollBy(0, 1);
+  //     console.log("update");
+  //   }
+  // }
+
   render() {
     const { target, reference } = this.props;
     const { selectedToken, isChecking } = this.state;
