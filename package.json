@@ -16,6 +16,7 @@
     "react": "^16.8.4",
     "react-animate-on-scroll": "^2.1.5",
     "react-circular-progressbar": "^2.0.0",
+    "react-content-loader": "^4.2.1",
     "react-dom": "^16.8.4",
     "react-move": "^5.2.1",
     "react-redux": "^6.0.1",
