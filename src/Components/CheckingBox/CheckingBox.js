@@ -133,10 +133,7 @@ class CheckingBox extends Component {
   handlePostReference = (data, index) => {
     const { dispatch } = this.props;
     const params = {
-      sentence: data
-        .replace("’", "'")
-        .replace("“", '"')
-        .replace("”", '"')
+      sentence: data.replace(/’|“|”/g, "'")
     };
     dispatch(Action.postReference(params)).then(result => {
       console.log("postReference result : ", result);

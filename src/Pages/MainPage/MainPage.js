@@ -267,10 +267,6 @@ class MainPage extends Component {
                       {data.task}
                     </p>
                     <div className="mainPage__footer__content__member__git">
-                      <a href={data.git} target="_sub">
-                        <img src={Gitlogo} alt="github" />
-                        {data.gitTitle}
-                      </a>
                       {data.name === "DongOnee" ? (
                         <a
                           className="mainPage__footer__content__member__git-dongOnee"
@@ -281,6 +277,10 @@ class MainPage extends Component {
                           Logic Validation
                         </a>
                       ) : null}
+                      <a href={data.git} target="_sub">
+                        <img src={Gitlogo} alt="github" />
+                        {data.gitTitle}
+                      </a>
                     </div>
                   </ScrollAnimation>
                 </div>
