@@ -271,6 +271,16 @@ class MainPage extends Component {
                         <img src={Gitlogo} alt="github" />
                         {data.gitTitle}
                       </a>
+                      {data.name === "DongOnee" ? (
+                        <a
+                          className="mainPage__footer__content__member__git-dongOnee"
+                          href="https://github.com/DongOnee/LOVA_logical"
+                          target="_sub"
+                        >
+                          <img src={Gitlogo} alt="github" />
+                          Logic Validation
+                        </a>
+                      ) : null}
                     </div>
                   </ScrollAnimation>
                 </div>
