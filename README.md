@@ -49,20 +49,20 @@ You will also see any lint errors in the console.
 
 ## About LOVA
 
-![MainPage](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/MainPage.png)
+![MainPage](https://github.com/Seogeurim/lova-front/blob/master/Lova_IntroduceImages/MainPage.png)
 
 This is the main page.
 
-![InputType](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/InputType.png)
+![InputType](https://github.com/Seogeurim/lova-front/blob/master/LOVA_IntroduceImages/InputType.png)
 
 Users can choose the Input Type by the essay type they want to test logicality.
 
-![LogicValidation](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/LogicValidation.png)
+![LogicValidation](https://github.com/Seogeurim/lova-front/blob/master/LOVA_IntroduceImages/LogicValidation.png)
 
 This is the result page of logic validation after enter the essay.
 The number at the top represents the essay score. The sentences below are automatically classified quoted sentences.
 
-![TruthJudgement](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/TruthJudgement.png)
+![TruthJudgement](https://github.com/Seogeurim/lova-front/blob/master/LOVA_IntroduceImages/TruthJudgement.png)
 
 If click on the quoted sentence, users can see the urls associated with it.
 And if you have a sentence that you want to check out further, you can click on the sentence in the full text on the left to see it.
