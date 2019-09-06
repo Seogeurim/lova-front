@@ -1,10 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# LOVA (Logic Validation) WebPage Front-end
 
-## Available Scripts
+Hanyang Univ. 2019 Capstone Team LOVA.
+
+This web page provides services for logical validation that allows to examine the logic of an essay or article.
+
+## Functions
+
+1. Logical Validation
+   This is Essay scoring. The logicality score of the essay is expressed in percent. The higher score, the level of logic is higher. And depending on the score, users can be guided on areas that need modification in essay.
+
+2. Truth Judgement
+
+   We extract quoted sentence in essay and judge whether the sentence is true. If necessary, users can also choose the sentences they want to perform the reliability check. And by clicking on such a classified sentence, users can see a URL list where they can see the references associated with it.
+
+3. Input Type
+
+   Users can vary the type of input depending on the type of essay they want to be tested for logic.
+
+   - FullText type : the entire essay
+   - Thematic type : the essay by dividing claims and premises
+   - Video type : a YouTube link that wants a logic validation check
+     (In this type, text is extracted from the video and perform the checking.)
+
+## Language/Libraries
+
+- React.js
+- Redux
+- reactstrap
+- material ui
+- react-circular-progressbar
+- react-content-loader
+- sentence-splitter
+- react-youtube
+
+## Usage
+
+Clone this repository files and open the project.
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm install > npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,57 +47,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+## About LOVA
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![MainPage](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/MainPage.png)
 
-### `npm run build`
+This is the main page.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![InputType](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/InputType.png)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Users can choose the Input Type by the essay type they want to test logicality.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![LogicValidation](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/LogicValidation.png)
 
-### `npm run eject`
+This is the result page of logic validation after enter the essay.
+The number at the top represents the essay score. The sentences below are automatically classified quoted sentences.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![TruthJudgement](/Users/seogeurim/Desktop/lova-front/LOVA_IntroduceImages/TruthJudgement.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+If click on the quoted sentence, users can see the urls associated with it.
+And if you have a sentence that you want to check out further, you can click on the sentence in the full text on the left to see it.
