@@ -70,3 +70,7 @@ The number at the top represents the essay score. The sentences below are automa
 
 If click on the quoted sentence, users can see the urls associated with it.
 And if you have a sentence that you want to check out further, you can click on the sentence in the full text on the left to see it.
+
+### Introduction
+
+youtube video | https://youtu.be/yDnf8HIyet4
